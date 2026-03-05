@@ -1,0 +1,6 @@
+{"type":"user","sessionId":"test-session-001","timestamp":"2026-02-10T14:30:00Z","cwd":"/home/user/projects/myapp","slug":"myapp","message":{"content":"Hello, help me fix the login bug"}}
+{"type":"assistant","sessionId":"test-session-001","timestamp":"2026-02-10T14:30:05Z","message":{"model":"claude-opus-4-5-20251101","content":[{"type":"text","text":"I'll help fix the login bug."},{"type":"tool_use","name":"Read"}],"usage":{"input_tokens":1000,"output_tokens":500,"cache_read_input_tokens":200,"cache_creation_input_tokens":100}}}
+{"type":"user","sessionId":"test-session-001","timestamp":"2026-02-10T14:31:00Z","message":{"content":"Yes, go ahead"}}
+{"type":"assistant","sessionId":"test-session-001","timestamp":"2026-02-10T14:31:10Z","message":{"model":"claude-opus-4-5-20251101","content":[{"type":"text","text":"Fixed it."},{"type":"tool_use","name":"Edit"}],"usage":{"input_tokens":2000,"output_tokens":800,"cache_read_input_tokens":500,"cache_creation_input_tokens":0}}}
+{"type":"user","sessionId":"test-session-001","timestamp":1738504200000,"message":{"content":"Thanks!"}}
+{"type":"assistant","sessionId":"test-session-001","timestamp":1738504210000,"message":{"model":"claude-haiku-4-5-20251001","content":[{"type":"text","text":"You're welcome!"}],"usage":{"input_tokens":500,"output_tokens":100,"cache_read_input_tokens":0,"cache_creation_input_tokens":0}}}

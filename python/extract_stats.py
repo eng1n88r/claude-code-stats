@@ -145,7 +145,7 @@ def project_display_name(project_path):
     if not project_path:
         return "Unknown"
     p = project_path.replace("\\", "/")
-    parts = p.rstrip("/").split("/")
+    parts = [x for x in p.rstrip("/").split("/") if x]
     if len(parts) >= 2:
         return "/".join(parts[-2:])
     return parts[-1] if parts else project_path

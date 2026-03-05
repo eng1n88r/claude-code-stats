@@ -40,6 +40,15 @@ go build -o claude-dashboard ./cmd/claude-dashboard
 cp ../config.example.json ../config.json
 ```
 
+## Testing
+
+```bash
+cd go
+go test ./...
+```
+
+Tests cover pricing, cost calculation, date clamping, session parsing, config loading, TUI helpers, and cross-validation with the Python implementation (requires Python 3 in PATH).
+
 ## Usage
 
 ```bash

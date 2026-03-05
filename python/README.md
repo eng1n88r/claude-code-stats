@@ -55,6 +55,15 @@ uv run claude-extract              # Same as python extract_stats.py
 uv run claude-dashboard            # Same as python cli.py
 ```
 
+## Testing
+
+```bash
+cd python
+python -m unittest test_extract -v
+```
+
+Tests cover pricing, cost calculation, project display names, CLI helpers, and parity with the Go implementation.
+
 ## Dependencies
 
 - **extract_stats.py** -- Python stdlib only (no external deps)

@@ -1,0 +1,13 @@
+{
+  "language": "en",
+  "plan_history": [
+    {
+      "plan": "Max",
+      "start": "2026-01-01",
+      "end": null,
+      "cost_eur": 87.61,
+      "cost_usd": 93.00,
+      "billing_day": 1
+    }
+  ]
+}
