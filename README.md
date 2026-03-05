@@ -1,6 +1,6 @@
 # Claude Code Usage Statistics
 
-A comprehensive analytics dashboard for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) usage data. Parses your local Claude Code session transcripts, calculates hypothetical API costs, and generates an interactive HTML dashboard.
+A comprehensive analytics dashboard for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) usage data. Parses your local Claude Code session transcripts, calculates hypothetical API costs, and displays an interactive dashboard.
 
 ***Disclaimer:*** *This is an unofficial, community-built tool. Not affiliated with or endorsed by Anthropic.*
 
@@ -16,33 +16,49 @@ A comprehensive analytics dashboard for [Claude Code](https://docs.anthropic.com
 
 ![Dashboard Screenshot](docs/images/claude-code-stats-01.png)
 
+## Implementations
+
+This repo contains two implementations sharing the same config and data format:
+
+| | [**Go (TUI)**](go/) | [**Python**](python/) |
+|---|---|---|
+| Interface | Interactive terminal TUI (Bubble Tea v2) | HTML dashboard + Textual TUI |
+| Install | Single binary, zero deps | Python 3.10+ with uv |
+| Best for | Daily use, quick checks | HTML generation, automation |
+
+Both read from `~/.claude/` and use the same `config.json`.
+
 ## Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/AeternaLabsHQ/claude-code-stats.git
-   cd claude-code-stats
-   ```
+### Option A: Go Binary (Recommended)
 
-2. **Create your configuration**
-   ```bash
-   cp config.example.json config.json
-   ```
-   Edit `config.json` to match your subscription plan and preferences.
+```bash
+# Download from releases, or build from source:
+cd go
+go build -o claude-dashboard ./cmd/claude-dashboard
+./claude-dashboard
+```
 
-3. **Run the extractor**
-   ```bash
-   python3 extract_stats.py
-   ```
+See [go/README.md](go/README.md) for full details.
 
-4. **Open the dashboard**
-   ```bash
-   open public/dashboard.html      # macOS
-   xdg-open public/dashboard.html  # Linux
-   start public/dashboard.html     # Windows
-   ```
+### Option B: Python
+
+```bash
+cd python
+uv sync
+uv run python extract_stats.py      # Generate HTML dashboard
+uv run python cli.py                # Interactive TUI
+```
+
+See [python/README.md](python/README.md) for full details.
 
 ## Configuration
+
+Create your config file in the repo root:
+
+```bash
+cp config.example.json config.json
+```
 
 See [`config.example.json`](config.example.json) for all options:
 
@@ -86,34 +102,30 @@ If you migrated Claude Code data from another machine, you can include that hist
 }
 ```
 
-The script deduplicates sessions across both sources automatically.
-
-## Output
-
-The script generates files in the `public/` directory:
-
-- `dashboard.html` -- Self-contained interactive dashboard (open in any browser)
-- `dashboard_data.json` -- Raw aggregated data (for custom analysis)
-
-## Automation
-
-To auto-refresh the dashboard periodically:
-
-```bash
-*/10 * * * * cd /path/to/claude-stats && python3 extract_stats.py 2>&1 >> update.log
-```
-
-## Requirements
-
-- Python 3.8+
-- No external dependencies (stdlib only)
-- Claude Code installed with session data in `~/.claude/`
+Sessions are deduplicated across both sources automatically.
 
 ## Localization
 
-The dashboard supports English and German. Set `"language": "en"` or `"language": "de"` in your `config.json`.
+Supports English and German. Set `"language": "en"` or `"language": "de"` in `config.json`.
 
 To add a new language, create a file in `locales/` following the structure of [`locales/en.json`](locales/en.json).
+
+## Repository Structure
+
+```
+claude-code-stats/
+  config.example.json          # Shared configuration template
+  locales/                     # Shared locale files (en, de)
+  docs/                        # Documentation, screenshots, solutions
+  python/                      # Python implementation
+    extract_stats.py           #   HTML dashboard generator (stdlib only)
+    cli.py                     #   Textual TUI dashboard
+    pyproject.toml             #   uv/pip project file
+  go/                          # Go implementation
+    cmd/claude-dashboard/      #   CLI entry point
+    internal/                  #   Extraction + TUI code
+    .goreleaser.yml            #   Cross-platform build config
+```
 
 ## License
 

@@ -1,0 +1,19 @@
+[project]
+name = "claude-code-stats"
+version = "0.1.0"
+description = "Claude Code usage statistics extractor and CLI dashboard"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+
+dependencies = [
+    "textual>=1.0.0",
+]
+
+[project.scripts]
+claude-extract = "extract_stats:main"
+claude-dashboard = "cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

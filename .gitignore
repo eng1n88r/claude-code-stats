@@ -1,7 +1,7 @@
 # Generated output
 public/
 
-# Legacy output location (before public/ migration)
+# Legacy output location
 dashboard.html
 dashboard_data.json
 
@@ -14,7 +14,6 @@ update_dashboard.log
 .last_build
 
 # Internal documentation and planning
-docs/*.md
 docs/plans/
 
 # Backup copies of ~/.claude data
@@ -26,3 +25,16 @@ dot-claude.json
 
 # Python
 __pycache__/
+*.pyc
+.venv/
+python/.venv/
+
+# Go binaries
+go/claude-dashboard
+go/claude-dashboard.exe
+claude-dashboard.exe
+*.exe~
+
+# OS
+.DS_Store
+Thumbs.db

@@ -18,8 +18,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # ── Configuration ──────────────────────────────────────────────────────────
-CONFIG_PATH = Path(__file__).parent / "config.json"
-CONFIG_EXAMPLE = Path(__file__).parent / "config.example.json"
+PROJECT_ROOT = Path(__file__).parent.parent
+CONFIG_PATH = PROJECT_ROOT / "config.json"
+CONFIG_EXAMPLE = PROJECT_ROOT / "config.example.json"
 
 
 def load_config():
@@ -37,10 +38,10 @@ CONFIG = load_config()
 
 def load_locale(lang):
     """Load locale file for the given language."""
-    locale_path = Path(__file__).parent / "locales" / f"{lang}.json"
+    locale_path = PROJECT_ROOT / "locales" / f"{lang}.json"
     if not locale_path.exists():
         print(f"WARNING: Locale '{lang}' not found, falling back to 'en'")
-        locale_path = Path(__file__).parent / "locales" / "en.json"
+        locale_path = PROJECT_ROOT / "locales" / "en.json"
     with open(locale_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -73,7 +74,7 @@ else:
     MIGRATION_STATS_CACHE = None
     MIGRATION_HISTORY_JSONL = None
 
-OUTPUT_DIR = Path(__file__).parent / "public"
+OUTPUT_DIR = PROJECT_ROOT / "public"
 DASHBOARD_DATA = OUTPUT_DIR / "dashboard_data.json"
 DASHBOARD_HTML = OUTPUT_DIR / "dashboard.html"
 TEMPLATE_HTML = Path(__file__).parent / "dashboard_template.html"

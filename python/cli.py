@@ -20,7 +20,8 @@ if sys.platform == "win32":
     os.environ.setdefault("PYTHONIOENCODING", "utf-8")
 
 SCRIPT_DIR = Path(__file__).parent
-DATA_FILE = SCRIPT_DIR / "public" / "dashboard_data.json"
+PROJECT_ROOT = SCRIPT_DIR.parent
+DATA_FILE = PROJECT_ROOT / "public" / "dashboard_data.json"
 EXTRACT_SCRIPT = SCRIPT_DIR / "extract_stats.py"
 
 
